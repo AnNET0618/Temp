@@ -1,0 +1,94 @@
+<!DOCTYPE html> 
+<html> 
+<head> 
+    <meta charset="UTF-8">
+    <link rel='stylesheet' href='style.css'>
+    <title>RESERVATION</title> 
+  
+    <style> 
+        body { 
+            background-color: white; 
+        } 
+        .container {
+            display: flex;
+            justify-content: space-between;
+        }
+        .form-container {
+            width: 50%;
+        }
+        .image-container {
+            width: 50%;
+            display: flex;
+            justify-content: flex-end;
+        }
+        .image-container img {
+            max-width: 100%;
+        }
+    </style> 
+</head> 
+  
+<body> 
+
+    <div class='history'>
+        <div class='history-holder'>
+            <div class='history-info'>
+                <div class='text-title'>
+                    <div class="container">
+                        <div class="form-container">
+                            <h1>БРОНИРОВАНИЕ СТОЛИКА</h1>
+                            <form id="bookingForm">
+                                <label for="name">Имя:</label>
+                                <input type="text" id="name" name="name" required><br>
+
+                                <label for="guests">Количество человек:</label>
+                                <input type="number" id="guests" name="guests" required><br>
+
+                                <label for="date">Дата:</label>
+                                <input type="date" id="date" name="date" required><br>
+
+                                <label for="time">Время:</label>
+                                <input type="time" id="time" name="time" required><br>
+                                
+                                <div class='button2'>
+                                    <input type="submit" value="Забронировать" style="background-color: orange; font-size: 50px;">
+                                </div>   
+                            </form>
+                        </div>
+                        <div class="history-images">
+                            <img class='imgages-4' src="bron2.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.getElementById("bookingForm").addEventListener("submit", function(e) {
+            e.preventDefault(); // Отменить отправку формы
+
+            // Получить значения полей формы
+            var name = document.getElementById("name").value;
+            var guests = document.getElementById("guests").value;
+            var date = document.getElementById("date").value;
+            var time = document.getElementById("time").value;
+
+            // Создать текстовую строку с данными
+            var data = "Имя: " + name + "\n" +
+                       "Количество человек: " + guests + "\n" +
+                       "Дата: " + date + "\n" +
+                       "Время: " + time + "\n";
+
+            // Создать новый элемент "a" для скачивания файла
+            var link = document.createElement("a");
+            link.href = "data:text/plain;charset=utf-8," + encodeURIComponent(data);
+            link.download = "booking.txt";
+            link.style.display = "none";
+
+            // Добавить элемент "a" на страницу и кликнуть на него для скачивания файла
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        });
+    </script>
+</body> 
+</html>
